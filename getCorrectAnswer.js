@@ -30,8 +30,10 @@ setTimeout(() => {
 function addAnswer(i){
     if(revision == 0){
         incorrect = 0;
+        respuestas = "";
         opciones_test = opciones.item(i).childNodes;
         for(let j = 0; j < opciones_test.length; j += 2){
+            respuestas += "   '" + opciones_test.item(j).textContent.slice(3) + "',\n"
             if(opciones_test.item(j).getAttribute('class').includes(" correct")){
                 return "   '" + opciones_test.item(j).textContent.slice(3) + "'\n";
             }
@@ -40,6 +42,7 @@ function addAnswer(i){
 
         if(incorrect == opciones_test.length){
             alert("No se ha encontrado la respuesta correcta a la pregunta " + (i+1));
+            return "   'UNDEFINED'\n";
         }
     }
     else if(revision == 1){
