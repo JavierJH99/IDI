@@ -77,10 +77,10 @@ color = "0000FF";
 //     ],
 // }
 
-bbdd = getBBDD();
+bbdd = JSON.parse(getBBDD)
+console.log(bbdd);
 
 setTimeout(() => {
-    getBBDD();
     pregunta = []
     for(let i = 0; i < preguntas.length; i++) {
         pregunta[i] = preguntas.item(i).textContent
@@ -113,5 +113,5 @@ setTimeout(() => {
 function getBBDD(){
     xhr.open("GET", urlString, false);
     xhr.send(null);
-    return xhr.responseText;
+    return '' + xhr.responseText;
 }

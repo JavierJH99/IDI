@@ -17,7 +17,7 @@ setTimeout(() => {
     else revision = 0
 
     for(let i = 0; i < preguntas.length; i++) {
-        json += "'" +  preguntas.item(i).textContent + "' :[\n" + addAnswer(i) + "],\n";
+        json += "\"" +  preguntas.item(i).textContent + "\" :[\n" + addAnswer(i) + "],\n";
     }
 
     if (confirm('Compartir en Telegram')) {
@@ -33,20 +33,20 @@ function addAnswer(i){
         respuestas = "";
         opciones_test = opciones.item(i).childNodes;
         for(let j = 0; j < opciones_test.length; j += 2){
-            respuestas += "   '" + opciones_test.item(j).textContent.slice(3) + "',\n"
+            respuestas += "   \"" + opciones_test.item(j).textContent.slice(3) + "\",\n"
             if(opciones_test.item(j).getAttribute('class').includes(" correct")){
-                return "   '" + opciones_test.item(j).textContent.slice(3) + "'\n";
+                return "   \"" + opciones_test.item(j).textContent.slice(3) + "\"\n";
             }
             else incorrect += 2;
         }
 
         if(incorrect == opciones_test.length){
             alert("No se ha encontrado la respuesta correcta a la pregunta " + (i+1));
-            return "   'UNDEFINED'\n";
+            return "   \"UNDEFINED\"\n";
         }
     }
     else if(revision == 1){
-        return "   '" + opciones.item(i).textContent.slice(26) + " '\n"
+        return "   \"" + opciones.item(i).textContent.slice(26) + " \"\n"
     }
     else{
         alert("Ha ocurrido un error");
