@@ -29,7 +29,7 @@ setTimeout(() => {
         json = updateJson(json);
     }
 
-    sessionStorage.setItem('jsonQuiz',JSON.stringify(json));
+    sessionStorage.setItem('jsonQuiz',json);
 })
 
 function addAnswer(i){
