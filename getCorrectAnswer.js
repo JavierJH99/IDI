@@ -7,7 +7,7 @@ urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.j
 
 preguntas = document.getElementsByClassName("qtext");
 opciones = document.getElementsByClassName("answer");
-json = "{";
+json = "{\n";
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
@@ -74,11 +74,14 @@ function updateJson(currentJson){
 }
 
 function jsonConcat(json1, json2) {
-    console.log("\n\n________________________JSON1________________________\n\n" + json1 + 
-    "\n\n________________________JSON2________________________\n\n" + json2 +
-    "\n\n________________________JSON CONCAT________________________\n\n");
+    // console.log("\n\n________________________JSON1________________________\n\n" + json1 + 
+    // "\n\n________________________JSON2________________________\n\n" + json2 +
+    // "\n\n________________________JSON CONCAT________________________\n\n");
     Object.entries(json2).forEach(([key, value]) => {
+        
         json1[key] = value;
+        console.log("\nAñadiendo: " + key + " : " + value);
+        console.log(json1[key]);
     })
     console.log(json1) + "\n\n________________________END________________________\n\n";
 }
