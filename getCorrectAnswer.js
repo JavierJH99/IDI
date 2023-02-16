@@ -2,7 +2,8 @@ var xhr = new XMLHttpRequest();
 apiToken = "6158839350:AAF52fPYksix1BKg7rBWIDw3BA18_IfX2cA";
 chatId = "-756377494";
 
-urlString = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
+urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
+urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
 
 preguntas = document.getElementsByClassName("qtext");
 opciones = document.getElementsByClassName("answer");
@@ -22,6 +23,10 @@ setTimeout(() => {
 
     if (confirm('Compartir en Telegram')) {
         setTimeout(sendToTelegram(json), 5000);
+    }
+
+    if(confirm('Actualizar archivo json con las nuevas preguntas')){
+        updateJson(json);
     }
 
     sessionStorage.setItem('jsonQuiz',json);    
@@ -54,6 +59,21 @@ function addAnswer(i){
 }
 
 function sendToTelegram(pregunta){    
-    xhr.open("GET", urlString + `&text=${pregunta}`);
+    xhr.open("GET", urlStringTelegram + `&text=${pregunta}`);
     xhr.send();
+}
+
+function updateJson(currentJson){
+    xhr.open("GET", urlStringGit, false);
+    xhr.send(null);
+    oldJson = xhr.responseText;
+
+    return jsonConcat(oldJson,currentJson);
+}
+
+function jsonConcat(json1, json2) {
+    for (var key in json2) {
+     json1[key] = json2[key];
+    }
+    return json1;
 }
