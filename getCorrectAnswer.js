@@ -26,11 +26,10 @@ setTimeout(() => {
     }
 
     if(confirm('Actualizar archivo json con las nuevas preguntas')){
-        updateJson(json);
+        json = updateJson(json);
     }
 
     sessionStorage.setItem('jsonQuiz',json);
-    console.log(json);
 })
 
 function addAnswer(i){
@@ -74,4 +73,6 @@ function jsonConcat(json1, json2) {
     Object.entries(json2).forEach(([key, value]) => {
         json1[key] = value;
     })
+
+    return json1;
 }
