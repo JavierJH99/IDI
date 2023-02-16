@@ -18,7 +18,7 @@ setTimeout(() => {
     else revision = 0
 
     for(let i = 0; i < preguntas.length; i++) {
-        json[preguntas.item(i).textContent] = addAnswer(i);
+        json[preguntas.item(i).textContent] = [addAnswer(i)];
     }
 
     if (confirm('Compartir en Telegram')) {
@@ -29,7 +29,7 @@ setTimeout(() => {
         json = updateJson(json);
     }
 
-    sessionStorage.setItem('jsonQuiz',json);
+    sessionStorage.setItem('jsonQuiz',JSON.stringify(json));
 })
 
 function addAnswer(i){
