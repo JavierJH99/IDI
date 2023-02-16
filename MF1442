@@ -1,4 +1,5 @@
-'¿De qué iniciativa forman parte los programas públicos de empleo y formación?' :[
+{    
+    '¿De qué iniciativa forman parte los programas públicos de empleo y formación?' :[
         'Formación en alternancia con el empleo. '
     ],
     'La formación de oferta está dirigida prioritariamente a desempleados:' :[
@@ -67,3 +68,4 @@
     'Las empresas que tienen una plantilla de 1 a 5 trabajadores NO tienen obligación de realizar aportación privada en formación bonificada.' :[
         'Verdadero '
     ],
+}
