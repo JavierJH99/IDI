@@ -72,8 +72,7 @@ function updateJson(currentJson){
 }
 
 function jsonConcat(json1, json2) {
-    for (var key in json2) {
-     json1[key] = json2[key];
-    }
-    return json1;
+    Object.entries(json2).forEach(([key, value]) => {
+        json1[key] = value;
+    })
 }
