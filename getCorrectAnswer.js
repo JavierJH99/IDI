@@ -7,7 +7,7 @@ urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.j
 
 preguntas = document.getElementsByClassName("qtext");
 opciones = document.getElementsByClassName("answer");
-json = "{\n";
+json = {};
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
@@ -18,9 +18,7 @@ setTimeout(() => {
     else revision = 0
 
     for(let i = 0; i < preguntas.length; i++) {
-        json += "\"" +  preguntas.item(i).textContent + "\" :[\n" + addAnswer(i) + "]";
-        if(i < preguntas.length - 1) json += ",\n";
-        else json += "\n}";
+        json[preguntas.item(i).textContent] = addAnswer(i);
     }
 
     if (confirm('Compartir en Telegram')) {
@@ -31,29 +29,28 @@ setTimeout(() => {
         updateJson(json);
     }
 
-    sessionStorage.setItem('jsonQuiz',json);    
+    sessionStorage.setItem('jsonQuiz',json);
+    console.log(json);
 })
 
 function addAnswer(i){
     if(revision == 0){
         incorrect = 0;
-        respuestas = "";
         opciones_test = opciones.item(i).childNodes;
         for(let j = 0; j < opciones_test.length; j += 2){
-            respuestas += "   \"" + opciones_test.item(j).textContent.slice(3) + "\",\n"
             if(opciones_test.item(j).getAttribute('class').includes(" correct")){
-                return "   \"" + opciones_test.item(j).textContent.slice(3) + "\"\n";
+                return opciones_test.item(j).textContent.slice(3);
             }
             else incorrect += 2;
         }
 
         if(incorrect == opciones_test.length){
             alert("No se ha encontrado la respuesta correcta a la pregunta " + (i+1));
-            return "   \"UNDEFINED\"\n";
+            return "UNDEFINED";
         }
     }
     else if(revision == 1){
-        return "   \"" + opciones.item(i).textContent.slice(26) + " \"\n"
+        return opciones.item(i).textContent.slice(26);
     }
     else{
         alert("Ha ocurrido un error");
@@ -74,14 +71,7 @@ function updateJson(currentJson){
 }
 
 function jsonConcat(json1, json2) {
-    // console.log("\n\n________________________JSON1________________________\n\n" + json1 + 
-    // "\n\n________________________JSON2________________________\n\n" + json2 +
-    // "\n\n________________________JSON CONCAT________________________\n\n");
     Object.entries(json2).forEach(([key, value]) => {
-        
         json1[key] = value;
-        console.log("\nAñadiendo: " + key + " : " + value);
-        console.log(json1[key]);
     })
-    console.log(json1) + "\n\n________________________END________________________\n\n";
 }
