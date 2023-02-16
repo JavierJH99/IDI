@@ -7,7 +7,7 @@ urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.j
 
 preguntas = document.getElementsByClassName("qtext");
 opciones = document.getElementsByClassName("answer");
-json = "";
+json = "{";
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
@@ -18,7 +18,9 @@ setTimeout(() => {
     else revision = 0
 
     for(let i = 0; i < preguntas.length; i++) {
-        json += "\"" +  preguntas.item(i).textContent + "\" :[\n" + addAnswer(i) + "],\n";
+        json += "\"" +  preguntas.item(i).textContent + "\" :[\n" + addAnswer(i) + "]";
+        if(i < preguntas.length - 1) json += ",\n";
+        else json += "\n}";
     }
 
     if (confirm('Compartir en Telegram')) {
@@ -72,7 +74,11 @@ function updateJson(currentJson){
 }
 
 function jsonConcat(json1, json2) {
+    console.log("\n\n________________________JSON1________________________\n\n" + json1 + 
+    "\n\n________________________JSON2________________________\n\n" + json2 +
+    "\n\n________________________JSON CONCAT________________________\n\n");
     Object.entries(json2).forEach(([key, value]) => {
         json1[key] = value;
     })
+    console.log(json1) + "\n\n________________________END________________________\n\n";
 }
