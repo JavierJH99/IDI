@@ -29,7 +29,7 @@ setTimeout(() => {
         json = updateJson(json);
     }
 
-    sessionStorage.setItem('jsonQuiz',json);
+    sessionStorage.setItem('jsonQuiz', JSON.stringify(json));
 })
 
 function addAnswer(i){
@@ -38,7 +38,9 @@ function addAnswer(i){
         opciones_test = opciones.item(i).childNodes;
         for(let j = 0; j < opciones_test.length; j += 2){
             if(opciones_test.item(j).getAttribute('class').includes(" correct")){
-                return opciones_test.item(j).textContent.slice(3);
+                respuesta_correcta = opciones_test.item(j).textContent.slice(3)
+                respuesta_correcta = process_question_answer(respuesta_correcta)
+                return respuesta_correcta;
             }
             else incorrect += 2;
         }
@@ -64,7 +66,9 @@ function sendToTelegram(pregunta){
 function updateJson(currentJson){
     xhr.open("GET", urlStringGit, false);
     xhr.send(null);
+
     oldJson = xhr.responseText;
+    oldJson = JSON.parse(oldJson)
 
     return jsonConcat(oldJson,currentJson);
 }
