@@ -39,7 +39,6 @@ function addAnswer(i){
         for(let j = 0; j < opciones_test.length; j += 2){
             if(opciones_test.item(j).getAttribute('class').includes(" correct")){
                 respuesta_correcta = opciones_test.item(j).textContent.slice(3)
-                respuesta_correcta = process_question_answer(respuesta_correcta)
                 return respuesta_correcta;
             }
             else incorrect += 2;
