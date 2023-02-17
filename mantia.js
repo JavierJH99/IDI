@@ -10,7 +10,7 @@ bbdd = JSON.parse(getBBDD())
 setTimeout(() => {
     pregunta = []
     for(let i = 0; i < preguntas.length; i++) {
-                               texto_pregunta = preguntas.item(i).textContent
+        texto_pregunta = preguntas.item(i).textContent
         pregunta[i] = process_question_answer(texto_pregunta)
     }
 
