@@ -7,6 +7,7 @@ urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.j
 
 preguntas = document.getElementsByClassName("qtext");
 opciones = document.getElementsByClassName("answer");
+respuestaAmarilla = document.getElementsByClassName("rightanswer");
 json = {};
 
 //Si has accedido posteriormente a la revisión: 0
@@ -22,7 +23,7 @@ setTimeout(() => {
     }
 
     if (confirm('Compartir en Telegram')) {
-        setTimeout(sendToTelegram(json), 5000);
+        setTimeout(sendToTelegram(JSON.stringify(json)), 5000);
     }
 
     if(confirm('Actualizar archivo json con las nuevas preguntas')){
@@ -50,7 +51,10 @@ function addAnswer(i){
         }
     }
     else if(revision == 1){
-        return opciones.item(i).textContent.slice(26);
+		respuestaTexto = respuestaAmarilla.item(i).textContent
+		console.log(respuestaTexto.slice(respuestaTexto.indexOf(':') + 1))
+		
+        return respuestaTexto.slice(respuestaTexto.indexOf(':') + 1);
     }
     else{
         alert("Ha ocurrido un error");
