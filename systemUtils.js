@@ -2,7 +2,7 @@ if (Array.isArray(text)) {
     let textArray = [];
 
     text.forEach(element => {
-        textArray.push(processText(element));
+        textArray.push(element.replace(/\s+/gm, " ").trim());
     });
 
     return textArray;
