@@ -1,3 +1,4 @@
+console.log(text2);
 if (Array.isArray(text)) {
     let textArray = [];
 
