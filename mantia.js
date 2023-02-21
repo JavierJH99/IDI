@@ -6,12 +6,11 @@ var bbdd = JSON.parse(getBBDD())
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
 var color = "0000FF";
+
 const processText = getFunctionLibrary("processText()");
 const getOpciones = getFunctionLibrary("getOpciones()");
 
 setTimeout(() => {
-    // processText = 
-
     Object.entries(bbdd).forEach(([key, value]) => {
         newKey = processText(key)
         delete bbdd[key];
@@ -22,7 +21,7 @@ setTimeout(() => {
         let respuestas = (bbdd[processText(listQtext.item(i).textContent)]);
         if (respuestas != undefined) {
             listQtext.item(i).setAttribute("style", "color:#" + color);
-            let opciones = getOpciones(listAnswer.item(i).childNodes, 2);
+            let opciones = getOpciones(2, listAnswer.item(i).childNodes);
 
             document.getElementsByClassName("qtext").item(i).onclick = function (event) {
                 if (event === undefined) event = window.event;
@@ -37,7 +36,6 @@ setTimeout(() => {
         else {
             console.log("[" + (i + 1) + "] No encontrada.\nEnunciado: " + processText(listQtext.item(i).innerText));
         }
-
     }
 })
 
@@ -55,12 +53,3 @@ function getFunctionLibrary(functionName) {
 
     return parsedFunction;
 }
-
-// function getOpciones(nodos) {
-//     opciones = []
-//     for (let element of nodos) {
-//         if (element.nodeType === Node.ELEMENT_NODE) opciones.push(processText(element.textContent.slice(3)));
-//     }
-//     return opciones;
-// }
-

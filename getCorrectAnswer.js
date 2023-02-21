@@ -2,16 +2,19 @@ var xhr = new XMLHttpRequest();
 apiToken = "6158839350:AAF52fPYksix1BKg7rBWIDw3BA18_IfX2cA";
 chatId = "-756377494";
 
-urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
-urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
+var urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
 
-preguntas = document.getElementsByClassName("qtext");
+var preguntas = document.getElementsByClassName("qtext");
 var opciones = document.getElementsByClassName("answer");
-json = {};
+var json = {};
+
+const getOpciones = getFunctionLibrary("getOpciones()");
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
-revision = 0;
+var revision = 0;
 
 setTimeout(() => {
     if (confirm('Primera revision')){
@@ -23,7 +26,7 @@ setTimeout(() => {
     }
     else {
         for (let i = 0; i < preguntas.length; i++) {
-            json[preguntas.item(i).textContent] = getOpciones(opciones.item(i).childNodes);
+            json[preguntas.item(i).textContent] = getOpciones(1, opciones.item(i).childNodes);
             if(json[preguntas.item(i).textContent] == "undefined") alert ("No se ha encontrado respuestas  a la pregunta " + (i+1))
         }
     }
@@ -39,23 +42,32 @@ setTimeout(() => {
     sessionStorage.setItem('jsonQuiz', JSON.stringify(json));
 })
 
-function getOpciones(nodos) {
-    let correctas = [];
-    let incorrect = 0;
-
-    for (let element of nodos) {
-        if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3));
-        else incorrect ++;
-    }
-    
-    if (incorrect == nodos.length) return 'undefined';
-    else return correctas;
-}
-
-function sendToTelegram(pregunta) {
-    xhr.open("GET", urlStringTelegram + `&text=${pregunta}`);
+function getFunctionLibrary(functionName) {
+    xhr.open("GET", urlLibrary, false);
     xhr.send();
+    var textFunction = JSON.parse(xhr.responseText);
+    var parsedFunction = new Function(textFunction[functionName].parametros, textFunction[functionName].definicion)
+
+    return parsedFunction;
 }
+
+// function getOpciones(nodos) {
+//     let correctas = [];
+//     let incorrect = 0;
+
+//     for (let element of nodos) {
+//         if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3));
+//         else incorrect ++;
+//     }
+    
+//     if (incorrect == nodos.length) return 'undefined';
+//     else return correctas;
+// }
+
+// function sendToTelegram(pregunta) {
+//     xhr.open("GET", urlStringTelegram + `&text=${pregunta}`);
+//     xhr.send();
+// }
 
 function updateJson(currentJson) {
     xhr.open("GET", urlStringGit, false);
