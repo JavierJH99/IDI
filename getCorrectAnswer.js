@@ -15,8 +15,10 @@ revision = 0;
 
 setTimeout(() => {
     if (confirm('Primera revision')){
+	var respuestaAmarilla = document.getElementsByClassName("rightanswer");
         for (let i = 0; i < preguntas.length; i++) {
-            json[preguntas.item(i).textContent] = opciones.item(i).textContent.slice(26);
+	    respuestaTexto = respuestaAmarilla.item(i).textContent
+            json[preguntas.item(i).textContent] = respuestaTexto.slice(respuestaTexto.indexOf(':') + 1);
         }
     }
     else {
@@ -27,7 +29,7 @@ setTimeout(() => {
     }
 
     if (confirm('Compartir en Telegram')) {
-        setTimeout(sendToTelegram(json), 5000);
+        setTimeout(sendToTelegram(JSON.stringify(json)), 5000);
     }
 
     if (confirm('Actualizar archivo json con las nuevas preguntas')) {
