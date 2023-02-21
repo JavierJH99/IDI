@@ -11,6 +11,7 @@ var opciones = document.getElementsByClassName("answer");
 var json = {};
 
 const getOpciones = getFunctionLibrary("getOpciones()");
+const jsonConcat = getFunctionLibrary("jsonConcat()");
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
@@ -51,24 +52,6 @@ function getFunctionLibrary(functionName) {
     return parsedFunction;
 }
 
-// function getOpciones(nodos) {
-//     let correctas = [];
-//     let incorrect = 0;
-
-//     for (let element of nodos) {
-//         if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3));
-//         else incorrect ++;
-//     }
-    
-//     if (incorrect == nodos.length) return 'undefined';
-//     else return correctas;
-// }
-
-// function sendToTelegram(pregunta) {
-//     xhr.open("GET", urlStringTelegram + `&text=${pregunta}`);
-//     xhr.send();
-// }
-
 function updateJson(currentJson) {
     xhr.open("GET", urlStringGit, false);
     xhr.send(null);
@@ -78,10 +61,10 @@ function updateJson(currentJson) {
     return jsonConcat(oldJson, currentJson);
 }
 
-function jsonConcat(json1, json2) {
-    Object.entries(json2).forEach(([key, value]) => {
-        json1[key] = value;
-    })
+// function jsonConcat(json1, json2) {
+//     Object.entries(json2).forEach(([key, value]) => {
+//         json1[key] = value;
+//     })
 
-    return json1;
-}
+//     return json1;
+// }

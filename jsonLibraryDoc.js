@@ -1,3 +1,10 @@
+//Params:
+//  Text: Texto sin formatear, con espacios duplicados, espacio inicial y final
+//      String: Una cadena de carácteres sin procesar.
+//      Array [String]: Vector de cadenas de carácteres sin procesar.
+//Return:
+//      String: Cadena de carácteres procesada.
+//      Array [String]: Vector de cadenas de carácteres procesadas. 
 function processText(text) {
     if (Array.isArray(text)) {
         let textArray = [];
@@ -13,6 +20,13 @@ function processText(text) {
     }
 }
 
+
+//Params:
+//  Type: Número que identifica el javascript que quiere hacer la llamada
+//      1: Javascript getCorrectAnswer.js
+//      2: Javascript mantia.js
+//  Nodos: childNodes de la pregunta del test (divHTML)
+//Return: Array con todas las opciones de la pregunta.
 function getOpciones(type, nodos) {
     if (type == 1) {
         let correctas = [];
@@ -33,4 +47,16 @@ function getOpciones(type, nodos) {
         }
         return opciones;
     }
+}
+
+
+//Params:
+//  json1: Objeto json para concatenar
+//  json2: Objeto json para concatenar
+//Return: Objeto json que contiene json1 y json2 concatenados
+function jsonConcat(json1, json2) {
+    Object.entries(json2).forEach(([key, value]) => {
+        json1[key] = value;
+    })
+    return json1;
 }
