@@ -48,7 +48,7 @@ function getOpciones(nodos) {
         else incorrect ++;
     }
     
-    if (incorrect == nodos.length) return "undefined";
+    if (incorrect == nodos.length) return 'undefined';
     else return correctas;
 }
 
