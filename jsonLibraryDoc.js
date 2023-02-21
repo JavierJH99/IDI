@@ -57,6 +57,6 @@ function getOpciones(type, nodos) {
 function jsonConcat(json1, json2) {
     Object.entries(json2).forEach(([key, value]) => {
         json1[key] = value;
-    })
+    });
     return json1;
 }

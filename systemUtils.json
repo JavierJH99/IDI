@@ -17,6 +17,6 @@
             "json1",
             "json2"
         ],
-        "definicion": "Object.entries(json2).forEach(([key, value]) => { json1[key] = value; }) return json1;"
+        "definicion": "Object.entries(json2).forEach(([key, value]) => { json1[key] = value; }); return json1;"
     }
 }
