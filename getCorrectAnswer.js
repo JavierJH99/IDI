@@ -6,7 +6,7 @@ urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id
 urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
 
 preguntas = document.getElementsByClassName("qtext");
-opciones = document.getElementsByClassName("answer");
+var opciones = document.getElementsByClassName("answer");
 json = {};
 
 //Si has accedido posteriormente a la revisión: 0
@@ -14,62 +14,54 @@ json = {};
 revision = 0;
 
 setTimeout(() => {
-    if (confirm('Primera revision')) revision = 1
-    else revision = 0
-
-    for(let i = 0; i < preguntas.length; i++) {
-        json[preguntas.item(i).textContent] = [addAnswer(i)];
+    if (confirm('Primera revision')){
+        for (let i = 0; i < preguntas.length; i++) {
+            json[preguntas.item(i).textContent] = opciones.item(i).textContent.slice(26);
+        }
+    }
+    else {
+        for (let i = 0; i < preguntas.length; i++) {
+            json[preguntas.item(i).textContent] = getOpciones(opciones.item(i).childNodes);
+            if(json[preguntas.item(i).textContent] == "undefined") alert ("No se ha encontrado respuestas  a la pregunta " + (i+1))
+        }
     }
 
     if (confirm('Compartir en Telegram')) {
         setTimeout(sendToTelegram(json), 5000);
     }
 
-    if(confirm('Actualizar archivo json con las nuevas preguntas')){
+    if (confirm('Actualizar archivo json con las nuevas preguntas')) {
         json = updateJson(json);
     }
 
     sessionStorage.setItem('jsonQuiz', JSON.stringify(json));
 })
 
-function addAnswer(i){
-    if(revision == 0){
-        incorrect = 0;
-        opciones_test = opciones.item(i).childNodes;
-        for(let j = 0; j < opciones_test.length; j += 2){
-            if(opciones_test.item(j).getAttribute('class').includes(" correct")){
-                respuesta_correcta = opciones_test.item(j).textContent.slice(3)
-                return respuesta_correcta;
-            }
-            else incorrect += 2;
-        }
+function getOpciones(nodos) {
+    let correctas = [];
+    let incorrect = 0;
 
-        if(incorrect == opciones_test.length){
-            alert("No se ha encontrado la respuesta correcta a la pregunta " + (i+1));
-            return "UNDEFINED";
-        }
+    for (let element of nodos) {
+        if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3));
+        else incorrect ++;
     }
-    else if(revision == 1){
-        return opciones.item(i).textContent.slice(26);
-    }
-    else{
-        alert("Ha ocurrido un error");
-    }
+    
+    if (incorrect == nodos.length) return "undefined";
+    else return correctas;
 }
 
-function sendToTelegram(pregunta){    
+function sendToTelegram(pregunta) {
     xhr.open("GET", urlStringTelegram + `&text=${pregunta}`);
     xhr.send();
 }
 
-function updateJson(currentJson){
+function updateJson(currentJson) {
     xhr.open("GET", urlStringGit, false);
     xhr.send(null);
 
-    oldJson = xhr.responseText;
-    oldJson = JSON.parse(oldJson)
+    let oldJson = JSON.parse(xhr.responseText);
 
-    return jsonConcat(oldJson,currentJson);
+    return jsonConcat(oldJson, currentJson);
 }
 
 function jsonConcat(json1, json2) {

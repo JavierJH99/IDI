@@ -1,58 +1,63 @@
 var xhr = new XMLHttpRequest();
-urlString = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var urlString = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var bbdd = JSON.parse(getBBDD())
 
-preguntas = document.getElementsByClassName("qtext");
-opciones = document.getElementsByClassName("answer");
-color = "0000FF";
-
-bbdd = JSON.parse(getBBDD())
+var listQtext = document.getElementsByClassName("qtext");
+var listAnswer = document.getElementsByClassName("answer");
+var color = "0000FF";
 
 setTimeout(() => {
-    pregunta = []
-    for(let i = 0; i < preguntas.length; i++) {
-        texto_pregunta = preguntas.item(i).textContent
-        pregunta[i] = process_question_answer(texto_pregunta)
-    }
+    for (let i = 0; i < listQtext.length; i++) {
+        let respuestas = (bbdd[listQtext.item(i).innerText]);
+        if (respuestas != undefined) {
+            listQtext.item(i).setAttribute("style", "color:#" + color);
+            let opciones = getOpciones(listAnswer.item(i).childNodes);
 
-    for(let j = 0; j < pregunta.length; j++) {
-        Object.entries(bbdd).forEach(([key, value]) => {
-            pregunta_bbdd = process_question_answer(key)
-            pregunta_questionario = process_question_answer(pregunta[j])
-                                               
+            document.getElementsByClassName("qtext").item(i).onclick = function (event) {
+                if (event === undefined) event = window.event;
+                for (let j = 0; j < opciones.length; j++) {
 
-            if (pregunta_questionario.includes(pregunta_bbdd)) {
-                preguntas.item(j).setAttribute("style","color:#" + color);
-                opciones_test = opciones.item(j).childNodes;
+                    // console.log("[" + j + "] Respuesta: " + processText(respuestas) 
+                    //     + "\nOpcion: " + processText(opciones[j]) + "\n" 
+                    //     + processText(respuestas).includes(processText(opciones[j])))
 
-                for (let k=0; k < (opciones_test.length); k+=2) {
-                    respuesta_texto = opciones_test.item(k).textContent.slice(3);
-                    respuesta = process_question_answer(respuesta_texto)
-                    respuesta_para_comparar = process_question_answer(value[0])
-
-
-                    if (respuesta_para_comparar.includes(respuesta)) {
-                        document.getElementsByClassName("qtext").item(j).onclick = function(event) {
-                            if (event === undefined) event = window.event;
-                            document.getElementsByClassName("answer").item(j).childNodes[k].childNodes[0].click();
-                        };
-                        
-                        opciones_test.item(k).childNodes[1].setAttribute("style","color:#" + color);
+                    if (processText(respuestas).includes(processText(opciones[j]))) {
+                        document.getElementsByClassName("answer").item(i).childNodes[j*2].childNodes[0].click();
+                        // console.log(listAnswer.item(i).childNodes[j*2].childNodes[1].textContent + "\n" + listAnswer.item(i).childNodes[j].childNodes[1].textContent)
+                        listAnswer.item(i).childNodes[j*2].childNodes[1].setAttribute("style", "color:#" + color);
                     }
                 }
-            }
-        });
+            };
+        }
     }
 })
 
-function getBBDD(){
+function getBBDD() {
     xhr.open("GET", urlString, false);
     xhr.send(null);
     return xhr.responseText;
 }
 
-function process_question_answer(text){
-	t = text.replace(/\s+/gm, " ")
-	t = t.trim()
+function processText(text) {
+    if (Array.isArray(text)) {
+        let textArray = [];
 
-	return t
+        text.forEach(element => {
+            textArray.push(processText(element));
+        });
+
+        return textArray;
+    }
+    else {
+        return text.replace(/\s+/gm, " ").trim();
+    }
 }
+
+function getOpciones(nodos) {
+    opciones = []
+    for (let element of nodos) {
+        if (element.nodeType === Node.ELEMENT_NODE) opciones.push(processText(element.textContent.slice(3)));
+    }
+    return opciones;
+}
+
