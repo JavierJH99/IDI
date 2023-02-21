@@ -5,15 +5,17 @@
         ],
         "definicion": "if (Array.isArray(text)) { let textArray = []; text.forEach(element => { textArray.push(element.replace(/\\s+/gm, ' ').trim()); }); return textArray; } else {return text.replace(/\\s+/gm, ' ').trim(); }"
     },
-    "getOpciones()":{
-        "parametros":[
-            "type, nodos"
+    "getOpciones()": {
+        "parametros": [
+            "type",
+            "nodos"
         ],
-        "definicion" : "if (type == 1) { let correctas = []; let incorrect = 0; for (let element of nodos) { if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3)); else incorrect++; } if (incorrect == nodos.length) return 'undefined'; else return correctas; } else if (type == 2) { opciones = []; for (let element of nodos) { if (element.nodeType === Node.ELEMENT_NODE) opciones.push(processText(element.textContent.slice(3))); } return opciones; }"
+        "definicion": "if (type == 1) { let correctas = []; let incorrect = 0; for (let element of nodos) { if (element.nodeType === Node.ELEMENT_NODE && element.getAttribute('class').includes(' correct')) correctas.push(element.textContent.slice(3)); else incorrect++; } if (incorrect == nodos.length) return 'undefined'; else return correctas; } else if (type == 2) { opciones = []; for (let element of nodos) { if (element.nodeType === Node.ELEMENT_NODE) opciones.push(processText(element.textContent.slice(3))); } return opciones; }"
     },
-    "jsonConcat()":{
-        "parametros":[
-            "json1, json2"
+    "jsonConcat()": {
+        "parametros": [
+            "json1",
+            "json2"
         ],
         "definicion": "Object.entries(json2).forEach(([key, value]) => { json1[key] = value; }) return json1;"
     }
