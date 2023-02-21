@@ -14,7 +14,7 @@ setTimeout(() => {
     })
     
     for (let i = 0; i < listQtext.length; i++) {
-        let respuestas = (bbdd[processText(listQtext.item(i).innerText)]);
+        let respuestas = (bbdd[processText(listQtext.item(i).textContent)]);
         if (respuestas != undefined) {
             listQtext.item(i).setAttribute("style", "color:#" + color);
             let opciones = getOpciones(listAnswer.item(i).childNodes);
