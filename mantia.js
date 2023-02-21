@@ -7,8 +7,14 @@ var listAnswer = document.getElementsByClassName("answer");
 var color = "0000FF";
 
 setTimeout(() => {
+    Object.entries(bbdd).forEach(([key,value]) => {
+        newKey = processText(key)
+        delete bbdd[key];
+        bbdd[newKey] = value;
+    })
+    
     for (let i = 0; i < listQtext.length; i++) {
-        let respuestas = (bbdd[listQtext.item(i).innerText]);
+        let respuestas = (bbdd[processText(listQtext.item(i).innerText)]);
         if (respuestas != undefined) {
             listQtext.item(i).setAttribute("style", "color:#" + color);
             let opciones = getOpciones(listAnswer.item(i).childNodes);
@@ -16,20 +22,18 @@ setTimeout(() => {
             document.getElementsByClassName("qtext").item(i).onclick = function (event) {
                 if (event === undefined) event = window.event;
                 for (let j = 0; j < opciones.length; j++) {
-
-                    // console.log("[" + j + "] Respuesta: " + processText(respuestas) 
-                    //     + "\nOpcion: " + processText(opciones[j]) + "\n" 
-                    //     + processText(respuestas).includes(processText(opciones[j])))
-
                     if (processText(respuestas).includes(processText(opciones[j]))) {
-                        document.getElementsByClassName("answer").item(i).childNodes[j*2].childNodes[0].click();
-                        // console.log(listAnswer.item(i).childNodes[j*2].childNodes[1].textContent + "\n" + listAnswer.item(i).childNodes[j].childNodes[1].textContent)
-                        listAnswer.item(i).childNodes[j*2].childNodes[1].setAttribute("style", "color:#" + color);
+                        document.getElementsByClassName("answer").item(i).childNodes[j * 2].childNodes[0].click();
+                        listAnswer.item(i).childNodes[j * 2].childNodes[1].setAttribute("style", "color:#" + color);
                     }
                 }
             };
         }
+        else {
+            console.log("[" + (i + 1) + "] No encontrada.\nEnunciado: " + processText(listQtext.item(i).innerText));
+        }
     }
+
 })
 
 function getBBDD() {
