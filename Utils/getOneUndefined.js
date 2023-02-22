@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
+var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Libraries/systemUtils.json";
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
 var existeRespuesta = false

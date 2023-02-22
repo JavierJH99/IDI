@@ -1,3 +1,12 @@
+/*
+-----------------------------------------------------------------------------
+-------------- Documentation for systemUtils.json library file --------------
+--- Created: 21/02/2023
+--- Last Updated: 22/02/2023
+-----------------------------------------------------------------------------
+*/
+
+
 //Params:
 //  Text: Texto sin formatear, con espacios duplicados, espacio inicial y final
 //      String: Una cadena de carácteres sin procesar.
