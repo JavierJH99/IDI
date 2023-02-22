@@ -38,7 +38,7 @@ setTimeout(() => {
     }
 
     if (confirm('Actualizar archivo json con las nuevas preguntas')) {
-        json = updateJson(json);
+        json = updateJson(urlStringGit, json);
     }
 
     sessionStorage.setItem('jsonQuiz', JSON.stringify(json));
