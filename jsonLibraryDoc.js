@@ -22,11 +22,13 @@ function processText(text) {
 
 
 //Params:
-//  Type: Número que identifica el javascript que quiere hacer la llamada
-//      1: Javascript getCorrectAnswer.js
-//      2: Javascript mantia.js
+//  Type: Número que identifica el funcionamiento de la función
+//      1: (Utilizado en Javascript getCorrectAnswer.js)
+//      2: (Utilizado en Javascript mantia.js)
 //  Nodos: childNodes de la pregunta del test (divHTML)
-//Return: Array con todas las opciones de la pregunta.
+//Return:
+//  Si 1: Array con todas las opciones correctas para una pregunta encontradas en la revisión. En caso de no encontrar devuelve un string "undefined"
+//  Si 2: Array con todas las opciones posibles para una pregunta encontrada en un test.
 function getOpciones(type, nodos) {
     if (type == 1) {
         let correctas = [];
