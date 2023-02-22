@@ -10,7 +10,7 @@ function processText(text) {
         let textArray = [];
 
         text.forEach(element => {
-            textArray.push(processText(element));
+            textArray.push(element.replace(/\s+/gm, ' ').trim());
         });
 
         return textArray;
@@ -59,4 +59,18 @@ function jsonConcat(json1, json2) {
         json1[key] = value;
     });
     return json1;
+}
+
+
+//Params:
+//  urlStringGit: String que hace referencia a la URL de GitHub donde se encuentra el RAW del archivo json con las respuestas de tests anteriores
+//  currentJson: Objeto json que contiene las respuestas al test en que se ha ejecutado el código
+//Return: Objeto json que concatena los tests que ya estaban almacenados en GitHub, con el test en que se ha ejecutado el código
+function updateJson(urlStringGit, currentJson) {
+    xhr.open("GET", urlStringGit, false);
+    xhr.send(null);
+
+    let oldJson = JSON.parse(xhr.responseText);
+
+    return jsonConcat(oldJson, currentJson);
 }

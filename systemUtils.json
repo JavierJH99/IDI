@@ -18,5 +18,12 @@
             "json2"
         ],
         "definicion": "Object.entries(json2).forEach(([key, value]) => { json1[key] = value; }); return json1;"
+    },
+    "updateJson()": {
+        "parametros": [
+            "urlStringGit",
+            "currentJson"
+        ],
+        "definicion": "xhr.open('GET', urlStringGit, false); xhr.send(null); let oldJson = JSON.parse(xhr.responseText); return jsonConcat(oldJson, currentJson);"
     }
 }

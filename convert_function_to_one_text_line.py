@@ -1,7 +1,6 @@
 import re
 
 function_body = """
-    
 """
 
 modified_function_body = function_body.replace('"', "'")

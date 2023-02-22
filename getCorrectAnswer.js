@@ -12,6 +12,7 @@ var json = {};
 
 const getOpciones = getFunctionLibrary("getOpciones()");
 const jsonConcat = getFunctionLibrary("jsonConcat()");
+const updateJson = getFunctionLibrary("updateJson()");
 
 //Si has accedido posteriormente a la revisión: 0
 //Si es la revisión que aparece al acabar el test: 1
@@ -52,19 +53,11 @@ function getFunctionLibrary(functionName) {
     return parsedFunction;
 }
 
-function updateJson(currentJson) {
-    xhr.open("GET", urlStringGit, false);
-    xhr.send(null);
+// function updateJson(urlStringGit, currentJson) {
+//     xhr.open("GET", urlStringGit, false);
+//     xhr.send(null);
 
-    let oldJson = JSON.parse(xhr.responseText);
+//     let oldJson = JSON.parse(xhr.responseText);
 
-    return jsonConcat(oldJson, currentJson);
-}
-
-// function jsonConcat(json1, json2) {
-//     Object.entries(json2).forEach(([key, value]) => {
-//         json1[key] = value;
-//     })
-
-//     return json1;
+//     return jsonConcat(oldJson, currentJson);
 // }
