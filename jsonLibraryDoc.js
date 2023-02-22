@@ -74,3 +74,13 @@ function updateJson(urlStringGit, currentJson) {
 
     return jsonConcat(oldJson, currentJson);
 }
+
+
+//Params:
+//  urlStringTelegram:  String que hace referencia a la URL dónde se encuentra alojado el bot de Telegram
+//  text: String que se mandará como mensaje mediante un bot de Telegram
+//Return:
+function sendToTelegram(urlStringTelegram, text) {
+    xhr.open("GET", urlStringTelegram + `&text=${text}`);
+    xhr.send();
+}

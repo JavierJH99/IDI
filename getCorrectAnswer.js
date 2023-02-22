@@ -13,6 +13,7 @@ var json = {};
 const getOpciones = getFunctionLibrary("getOpciones()");
 const jsonConcat = getFunctionLibrary("jsonConcat()");
 const updateJson = getFunctionLibrary("updateJson()");
+const sendToTelegram = getFunctionLibrary("sendToTelegram()")
 
 setTimeout(() => {
     if (confirm('Primera revision')){
@@ -30,7 +31,7 @@ setTimeout(() => {
     }
 
     if (confirm('Compartir en Telegram')) {
-        setTimeout(sendToTelegram(JSON.stringify(json)), 5000);
+        setTimeout(sendToTelegram(urlStringTelegram, JSON.stringify(json)), 5000);
     }
 
     if (confirm('Actualizar archivo json con las nuevas preguntas')) {
