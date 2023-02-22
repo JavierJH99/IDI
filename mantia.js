@@ -1,6 +1,6 @@
 var xhr = new XMLHttpRequest();
-var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
-var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
+var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1442.json";
+var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Libraries/systemUtils.json";
 
 const processText = getFunctionLibrary("processText()");
 const getOpciones = getFunctionLibrary("getOpciones()");
