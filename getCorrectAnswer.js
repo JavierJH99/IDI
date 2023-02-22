@@ -52,12 +52,3 @@ function getFunctionLibrary(functionName) {
 
     return parsedFunction;
 }
-
-// function updateJson(urlStringGit, currentJson) {
-//     xhr.open("GET", urlStringGit, false);
-//     xhr.send(null);
-
-//     let oldJson = JSON.parse(xhr.responseText);
-
-//     return jsonConcat(oldJson, currentJson);
-// }
