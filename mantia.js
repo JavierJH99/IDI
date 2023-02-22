@@ -1,12 +1,12 @@
+var xhr = new XMLHttpRequest();
+var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
+
 const processText = getFunctionLibrary("processText()");
 const getOpciones = getFunctionLibrary("getOpciones()");
 const getBBDD = getFunctionLibrary("getBBDD()");
 
-var xhr = new XMLHttpRequest();
-var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
-var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
 var bbdd = JSON.parse(getBBDD(urlStringBBDD))
-
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
 var color = "0000FF";
