@@ -1,6 +1,11 @@
+const getOpciones = getFunctionLibrary("getOpciones()");
+const jsonConcat = getFunctionLibrary("jsonConcat()");
+const updateJson = getFunctionLibrary("updateJson()");
+const sendToTelegram = getFunctionLibrary("sendToTelegram()")
+
 var xhr = new XMLHttpRequest();
-apiToken = "6158839350:AAF52fPYksix1BKg7rBWIDw3BA18_IfX2cA";
-chatId = "-756377494";
+var apiToken = "6158839350:AAF52fPYksix1BKg7rBWIDw3BA18_IfX2cA";
+var chatId = "-756377494";
 
 var urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
 var urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
@@ -10,14 +15,9 @@ var preguntas = document.getElementsByClassName("qtext");
 var opciones = document.getElementsByClassName("answer");
 var json = {};
 
-const getOpciones = getFunctionLibrary("getOpciones()");
-const jsonConcat = getFunctionLibrary("jsonConcat()");
-const updateJson = getFunctionLibrary("updateJson()");
-const sendToTelegram = getFunctionLibrary("sendToTelegram()")
-
 setTimeout(() => {
     if (confirm('Primera revision')){
-	var respuestaAmarilla = document.getElementsByClassName("rightanswer");
+	let respuestaAmarilla = document.getElementsByClassName("rightanswer");
         for (let i = 0; i < preguntas.length; i++) {
 	    respuestaTexto = respuestaAmarilla.item(i).textContent
             json[preguntas.item(i).textContent] = respuestaTexto.slice(respuestaTexto.indexOf(':') + 1);

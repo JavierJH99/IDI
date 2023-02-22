@@ -1,14 +1,15 @@
+const processText = getFunctionLibrary("processText()");
+const getOpciones = getFunctionLibrary("getOpciones()");
+const getBBDD = getFunctionLibrary("getBBDD()");
+
 var xhr = new XMLHttpRequest();
-var urlString = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
+var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/MF1442.json";
 var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/systemUtils.json";
-var bbdd = JSON.parse(getBBDD())
+var bbdd = JSON.parse(getBBDD(urlStringBBDD))
 
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
 var color = "0000FF";
-
-const processText = getFunctionLibrary("processText()");
-const getOpciones = getFunctionLibrary("getOpciones()");
 
 setTimeout(() => {
     Object.entries(bbdd).forEach(([key, value]) => {
@@ -38,12 +39,6 @@ setTimeout(() => {
         }
     }
 })
-
-function getBBDD() {
-    xhr.open("GET", urlString, false);
-    xhr.send(null);
-    return xhr.responseText;
-}
 
 function getFunctionLibrary(functionName) {
     xhr.open("GET", urlLibrary, false);

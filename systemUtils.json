@@ -32,5 +32,11 @@
             "text"
         ],
         "definicion": "xhr.open('GET', urlStringTelegram + `&text=${text}`); xhr.send();"
+    },
+    "getBBDD()":{
+        "parametros":[
+            "urlStringBBDD"
+        ],
+        "definicion": "xhr.open('GET', urlStringBBDD, false); xhr.send(null); return xhr.responseText;"
     }
 }

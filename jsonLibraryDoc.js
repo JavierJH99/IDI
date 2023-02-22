@@ -84,3 +84,12 @@ function sendToTelegram(urlStringTelegram, text) {
     xhr.open("GET", urlStringTelegram + `&text=${text}`);
     xhr.send();
 }
+
+
+//Params: 
+//  urlStringBBDD: String que hace referencia a la URL dónde se encuentra alojado el objeto JSON que contiene las respuestas a los tests de un módulo
+function getBBDD(urlStringBBDD) {
+    xhr.open("GET", urlStringBBDD, false);
+    xhr.send(null);
+    return xhr.responseText;
+}
