@@ -31,6 +31,6 @@
             "urlStringTelegram",
             "text"
         ],
-        "definicion": "xhr.open('GET', urlStringTelegram + `&text=${pregunta}`); xhr.send();"
+        "definicion": "xhr.open('GET', urlStringTelegram + `&text=${text}`); xhr.send();"
     }
 }
