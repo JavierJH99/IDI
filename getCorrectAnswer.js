@@ -14,10 +14,6 @@ const getOpciones = getFunctionLibrary("getOpciones()");
 const jsonConcat = getFunctionLibrary("jsonConcat()");
 const updateJson = getFunctionLibrary("updateJson()");
 
-//Si has accedido posteriormente a la revisión: 0
-//Si es la revisión que aparece al acabar el test: 1
-var revision = 0;
-
 setTimeout(() => {
     if (confirm('Primera revision')){
 	var respuestaAmarilla = document.getElementsByClassName("rightanswer");
