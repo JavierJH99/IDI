@@ -27,7 +27,7 @@ setTimeout(() => {
             document.getElementsByClassName("qtext").item(i).onclick = function (event) {
                 if (event === undefined) event = window.event;
                 for (let j = 0; j < opciones.length; j++) {
-                    if (processText(respuestas).includes(processText(opciones[j]))) {
+                    if (processText(respuestas) === processText(opciones[j])) {
                         document.getElementsByClassName("answer").item(i).childNodes[j * 2].childNodes[0].click();
                         listAnswer.item(i).childNodes[j * 2].childNodes[1].setAttribute("style", "color:#" + color);
                     }
