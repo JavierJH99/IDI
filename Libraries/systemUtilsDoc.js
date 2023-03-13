@@ -19,7 +19,7 @@ function processText(text) {
         let textArray = [];
 
         text.forEach(element => {
-            textArray.push(element.replace(/\s+/gm, ' ').trim());
+            textArray.push(element.replace(/\s+/gm, ' ').trim().toLowerCase());
         });
 
         return textArray;
