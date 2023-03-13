@@ -6,6 +6,7 @@ var existeRespuesta = false
 
 const getOpciones = getFunctionLibrary("getOpciones()");
 const processText = getFunctionLibrary("processText()");
+const elegirOpcion = getFunctionLibrary("elegirOpcion()")
 
 var pregunta = -1;
 while (pregunta >= listQtext.length || pregunta < 0) {
@@ -43,29 +44,4 @@ function getFunctionLibrary(functionName) {
     var parsedFunction = new Function(textFunction[functionName].parametros, textFunction[functionName].definicion)
 
     return parsedFunction;
-}
-
-function elegirOpcion(respuestaPrompt) {
-    let opcionElegida;
-    switch (respuestaPrompt) {
-        case "a":
-            opcionElegida = 0;
-            break;
-        case "b":
-            opcionElegida = 1;
-            break;
-        case "c":
-            opcionElegida = 2;
-            break;
-        case "d":
-            opcionElegida = 3;
-            break;
-        case "e":
-            opcionElegida = 4;
-            break;
-        default:
-            opcionElegida = 999;
-            break;
-    }
-    return opcionElegida;
 }

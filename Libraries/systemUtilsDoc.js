@@ -19,7 +19,7 @@ function processText(text) {
         let textArray = [];
 
         text.forEach(element => {
-            textArray.push(element.replace(/\s+/gm, ' ').trim());
+            textArray.push(element.replace(/\s+/gm, ' ').trim().toLowerCase());
         });
 
         return textArray;
@@ -99,8 +99,26 @@ function sendToTelegram(urlStringTelegram, text) {
 
 //Params: 
 //  urlStringBBDD: String que hace referencia a la URL dónde se encuentra alojado el objeto JSON que contiene las respuestas a los tests de un módulo
+//Return: Objeto JSON con todas las preguntas-respuestas almacenadas.
 function getBBDD(urlStringBBDD) {
     xhr.open("GET", urlStringBBDD, false);
     xhr.send(null);
     return xhr.responseText;
+}
+
+
+//Params:
+//  respuestaPrompt: Caracter que hacer referencia a una opción del test.
+//Return: Identificador numérico que hace referencia a la opción seleccionada.
+function elegirOpcion(respuestaPrompt) {
+    let opcionElegida = {
+        "a" : 0,
+        "b" : 1,
+        "c" : 2,
+        "d" : 3,
+        "e" : 4,
+        "f" : 5
+    };
+
+    return opcionElegida[respuestaPrompt] || 999;
 }

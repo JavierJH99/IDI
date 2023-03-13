@@ -3,7 +3,7 @@
         "parametros": [
             "text"
         ],
-        "definicion": "if (Array.isArray(text)) { let textArray = []; text.forEach(element => { textArray.push(element.replace(/\\s+/gm, ' ').trim()); }); return textArray; } else {return text.replace(/\\s+/gm, ' ').trim(); }"
+        "definicion": "if (Array.isArray(text)) { let textArray = []; text.forEach(element => { textArray.push(element.replace(/\\s+/gm, ' ').trim()); }); return textArray; } else {return text.replace(/\\s+/gm, ' ').trim().toLowerCase(); }"
     },
     "getOpciones()": {
         "parametros": [
@@ -38,5 +38,11 @@
             "urlStringBBDD"
         ],
         "definicion": "xhr.open('GET', urlStringBBDD, false); xhr.send(null); return xhr.responseText;"
+    },
+    "elegirOpcion()":{
+        "parametros":[
+            "respuestaPrompt"
+        ],
+        "definicion" : "let opcionElegida = { 'a' : 0, 'b' : 1, 'c' : 2, 'd' : 3, 'e' : 4, 'f' : 5 }; return opcionElegida[respuestaPrompt] || 999;"
     }
 }
