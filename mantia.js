@@ -9,7 +9,7 @@ const getBBDD = getFunctionLibrary("getBBDD()");
 var bbdd = JSON.parse(getBBDD(urlStringBBDD))
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
-var color = "535353";  // 333333 es el color original de la fuente, 535353 es un tono parecido al original
+var color = "0000FF";  // 333333 es el color original de la fuente, 535353 es un tono parecido al original
 
 setTimeout(() => {
     Object.entries(bbdd).forEach(([key, value]) => {
