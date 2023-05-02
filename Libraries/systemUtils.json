@@ -44,5 +44,11 @@
             "respuestaPrompt"
         ],
         "definicion" : "let opcionElegida = { 'a' : 0, 'b' : 1, 'c' : 2, 'd' : 3, 'e' : 4, 'f' : 5 }; return opcionElegida[respuestaPrompt] || 999;"
+    },
+    "removeElementsByClass()":{
+        "parametros":[
+            "className"
+        ],
+        "definicion" : "function removeElementsByClass(className){ const elements = document.getElementsByClassName(className); while(elements.length > 0){ elements[0].parentNode.removeChild(elements[0]); } }"
     }
 }

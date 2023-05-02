@@ -122,3 +122,14 @@ function elegirOpcion(respuestaPrompt) {
 
     return opcionElegida[respuestaPrompt] || 999;
 }
+
+
+//Params:
+//  className: String que hace referencia al nombre de Clase de los elementos HTML
+//Return: Elimina todos los elementos HTML cuyo nombre de clase coincida con el pasado por parámetros
+function removeElementsByClass(className){
+    const elements = document.getElementsByClassName(className);
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+}

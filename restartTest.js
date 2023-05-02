@@ -1,5 +1,5 @@
 var listAnswer = document.getElementsByClassName("answer");
-//var ticksVerdes = document.getElementsByClassName("icon fa fa-check text-success fa-fw ");
+const removeElementsByClass = getFunctionLibrary("removeElementsByClass()");
 
 for (let i = 0; i < listAnswer.length; i++) {
     for (let j = 0; j < listAnswer.item(i).childNodes.length; j++) {
@@ -12,11 +12,4 @@ for (let i = 0; i < listAnswer.length; i++) {
     }
 }
 
-removeElementsByClass("icon fa fa-check text-success fa-fw ")
-
-function removeElementsByClass(className){
-    const elements = document.getElementsByClassName(className);
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-    }
-}
+removeElementsByClass("icon fa fa-check text-success fa-fw ");
