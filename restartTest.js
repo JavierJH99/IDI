@@ -27,6 +27,7 @@ setTimeout(() => {
     }
 
     removeElementsByClass("icon fa fa-check text-success fa-fw ");
+    removeElementsByClass("icon fa fa-remove text-danger fa-fw ");
 })
 
 
