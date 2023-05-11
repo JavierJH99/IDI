@@ -1,6 +1,6 @@
 var xhr = new XMLHttpRequest();
 var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Libraries/systemUtils.json";
-var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1444.json";
+var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1445_MF1446.json";
 
 const removeElementsByClass = getFunctionLibrary("removeElementsByClass()");
 const processText = getFunctionLibrary("processText()");
@@ -10,7 +10,7 @@ const getBBDD = getFunctionLibrary("getBBDD()");
 var bbdd = JSON.parse(getBBDD(urlStringBBDD))
 var listQtext = document.getElementsByClassName("qtext");
 var listAnswer = document.getElementsByClassName("answer");
-var green = "00FF00";  //Color verde
+var green = "008800";  //Color verde
 var red = "FF0000"; //Color rojo
 var blue = "0000FF"; //Color azul
 
