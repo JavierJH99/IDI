@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest();
-var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1444.json";
+var urlStringBBDD = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1445_MF1446.json";
 var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Libraries/systemUtils.json";
 
 const processText = getFunctionLibrary("processText()");

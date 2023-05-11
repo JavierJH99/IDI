@@ -30,7 +30,6 @@ if (opciones !== null) {
             }
         }
     }
-
     
     window.navigator.clipboard.writeText(opciones[respuesta]);
     window.focus();

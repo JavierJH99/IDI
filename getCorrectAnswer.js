@@ -2,7 +2,7 @@ var xhr = new XMLHttpRequest();
 var apiToken = "6158839350:AAF52fPYksix1BKg7rBWIDw3BA18_IfX2cA";
 var chatId = "-756377494";
 var urlStringTelegram = `https://api.telegram.org/bot${apiToken}/sendMessage?chat_id=${chatId}`;
-var urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1442.json";
+var urlStringGit = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Data/MF1445_MF1446.json";
 var urlLibrary = "https://raw.githubusercontent.com/JavierJH99/IDI/master/Libraries/systemUtils.json";
 
 const getOpciones = getFunctionLibrary("getOpciones()");
@@ -38,6 +38,9 @@ setTimeout(() => {
     }
 
     sessionStorage.setItem('jsonQuiz', JSON.stringify(json));
+    window.navigator.clipboard.writeText(JSON.stringify(json));
+    window.focus();
+    alert("Json copiado al portapapeles, guapo :)")
 })
 
 function getFunctionLibrary(functionName) {
